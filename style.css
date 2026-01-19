@@ -1,12 +1,12 @@
 :root{
   --bg:#ffffff;
-  --card:#f6f8fb;
-  --alt:#f1f4f8;
+  --card:#ffffff;
+  --alt:#f7f9fc;
   --text:#1f2937;        /* dark grey text */
   --muted:#6b7280;       /* muted grey */
-  --border:rgba(0,0,0,.08);
+  --border:rgba(15,23,42,.10);
   --accent:#6fe3d6;      /* logo teal */
-  --shadow: 0 10px 24px rgba(0,0,0,.08);
+  --shadow: 0 10px 24px rgba(15,23,42,.06);
 }
 *{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
@@ -328,6 +328,7 @@ input:focus, textarea:focus{ border-color: rgba(106,228,255,.4); }
   .grid-2, .contact-grid{ grid-template-columns: 1fr; }
   .cards{ grid-template-columns: 1fr; }
 }
+
 
 
 
