@@ -98,6 +98,17 @@ a{ color:inherit; text-decoration:none; }
 .dropdown:hover .dropdown-panel{ display:block; }
 .dropdown-panel a{ color: var(--text);
                  }
+.dropdown-panel{
+  transform: translateY(6px);
+  opacity: 0;
+  transition: all .18s ease;
+}
+
+.dropdown:hover .dropdown-panel{
+  display:block;
+  transform: translateY(0);
+  opacity: 1;
+}
 
 .hero{ padding:60px 0 30px; }
 .hero-grid{
@@ -303,6 +314,7 @@ input:focus, textarea:focus{ border-color: rgba(106,228,255,.4); }
   .grid-2, .contact-grid{ grid-template-columns: 1fr; }
   .cards{ grid-template-columns: 1fr; }
 }
+
 
 
 
