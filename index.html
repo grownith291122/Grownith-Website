@@ -9,12 +9,13 @@
 </head>
 
 <body>
+
   <!-- Top bar -->
   <header class="header">
     <div class="container header-row">
-     <a class="brand" href="#home" aria-label="Grownith">
-  <img src="assets/logo.png" alt="Grownith logo" class="logo" />
-</a>
+      <a class="brand" href="#home" aria-label="Grownith">
+        <img src="assets/logo.png" alt="Grownith logo" class="logo" />
+      </a>
       <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
         ☰
       </button>
@@ -66,57 +67,91 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <main id="home" class="hero">
-    <div class="container hero-grid">
+  <!-- ===== HERO WITH VIDEO BACKGROUND ===== -->
+  <main id="home" class="hero" style="position:relative; overflow:hidden; min-height:580px; display:flex; align-items:center;">
+
+    <!-- Video 1 -->
+    <video id="vid0" class="hero-vid active"
+      src="assets/video1.mp4"
+      autoplay muted loop playsinline></video>
+
+    <!-- Video 2 -->
+    <video id="vid1" class="hero-vid"
+      src="assets/video2.mp4"
+      autoplay muted loop playsinline></video>
+
+    <!-- Video 3 -->
+    <video id="vid2" class="hero-vid"
+      src="assets/video3.mp4"
+      autoplay muted loop playsinline></video>
+
+    <!-- Dark overlay -->
+    <div style="position:absolute;inset:0;background:rgba(8,18,45,0.60);z-index:1;"></div>
+
+    <!-- Dot navigation -->
+    <div style="position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:10px;">
+      <span class="hero-dot active" onclick="heroGo(0)"></span>
+      <span class="hero-dot" onclick="heroGo(1)"></span>
+      <span class="hero-dot" onclick="heroGo(2)"></span>
+    </div>
+
+    <!-- Progress bar -->
+    <div id="heroBar" style="position:absolute;bottom:0;left:0;height:3px;width:0%;background:#5b9bd5;z-index:3;border-radius:0 2px 2px 0;"></div>
+
+    <!-- Hero content -->
+    <div class="container hero-grid" style="position:relative;z-index:2;">
       <div>
-        <p class="pill">Microsoft Dynamics • Power Platform • Azure Data & AI</p>
-        <h1>Grow faster with <span class="accent">Grownith</span>.</h1>
-        <p class="lead">
+        <p class="pill" style="color:#a8d4f5;border-color:rgba(168,212,245,0.35);background:rgba(91,155,213,0.15);">
+          Microsoft Dynamics • Power Platform • Azure Data & AI
+        </p>
+        <h1 style="color:#fff;">Grow faster with <span class="accent">Grownith</span>.</h1>
+        <p class="lead" style="color:rgba(255,255,255,0.82);">
           We help businesses modernize operations and reporting with Dynamics 365, Power Platform,
           Azure, and AI—delivered with practical, hands-on implementation.
         </p>
 
         <div class="hero-actions">
           <a class="btn primary" href="#contact">Talk to us</a>
-          <a class="btn" href="#services">Explore services</a>
+          <a class="btn" href="#services" style="color:#fff;border-color:rgba(255,255,255,0.45);">Explore services</a>
         </div>
 
         <div class="stats">
           <div class="stat">
-            <div class="stat-big">ERP</div>
-            <div class="stat-small">Dynamics 365 delivery</div>
+            <div class="stat-big" style="color:#fff;">ERP</div>
+            <div class="stat-small" style="color:rgba(255,255,255,0.72);">Dynamics 365 delivery</div>
           </div>
           <div class="stat">
-            <div class="stat-big">Data</div>
-            <div class="stat-small">Power BI & Fabric-ready</div>
+            <div class="stat-big" style="color:#fff;">Data</div>
+            <div class="stat-small" style="color:rgba(255,255,255,0.72);">Power BI & Fabric-ready</div>
           </div>
           <div class="stat">
-            <div class="stat-big">AI</div>
-            <div class="stat-small">Copilot & agents roadmap</div>
+            <div class="stat-big" style="color:#fff;">AI</div>
+            <div class="stat-small" style="color:rgba(255,255,255,0.72);">Copilot & agents roadmap</div>
           </div>
         </div>
       </div>
 
-      <div class="hero-card">
-        <h3>What we do</h3>
-        <ul class="checklist">
+      <!-- What we do card -->
+      <div class="hero-card" style="background:rgba(255,255,255,0.09);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:0.5px solid rgba(255,255,255,0.22);">
+        <h3 style="color:#fff;">What we do</h3>
+        <ul class="checklist" style="color:rgba(255,255,255,0.88);">
           <li>Dynamics 365 Finance & Supply Chain</li>
           <li>Power Platform (Apps, Automate, BI)</li>
           <li>Azure Data Lake, Integration & APIs</li>
           <li>Security posture & governance</li>
           <li>AI: Copilot enablement + custom agents</li>
         </ul>
-
         <div class="mini-cta">
-          <p><strong>Need a quick quote?</strong> Send your requirements and we’ll respond.</p>
+          <p style="color:rgba(255,255,255,0.80);"><strong style="color:#fff;">Need a quick quote?</strong> Send your requirements and we'll respond.</p>
           <a class="btn small primary" href="#contact">Get in touch</a>
         </div>
       </div>
     </div>
-  </main>
 
-  <!-- Logo strip (optional placeholders) -->
+  </main>
+  <!-- ===== END HERO ===== -->
+
+  <!-- Logo strip -->
   <section class="strip">
     <div class="container strip-row">
       <span class="muted">Trusted by teams who value delivery:</span>
@@ -281,14 +316,14 @@
         </article>
 
         <article class="card post">
-          <h3>Power BI governance that doesn’t slow teams</h3>
+          <h3>Power BI governance that doesn't slow teams</h3>
           <p>How to keep reports consistent while still allowing self-service.</p>
           <a class="link" href="#contact">Get a sample governance pack →</a>
         </article>
 
         <article class="card post">
           <h3>AI agents in ERP: real use-cases</h3>
-          <p>From PR creation to exception handling—what’s practical right now.</p>
+          <p>From PR creation to exception handling—what's practical right now.</p>
           <a class="link" href="#contact">Discuss agent scenarios →</a>
         </article>
       </div>
@@ -316,7 +351,7 @@
           <h3>Values</h3>
           <ul class="plain">
             <li><strong>Clarity:</strong> simple communication and clear plans</li>
-            <li><strong>Ownership:</strong> we don’t disappear after go-live</li>
+            <li><strong>Ownership:</strong> we don't disappear after go-live</li>
             <li><strong>Quality:</strong> scalable design, not shortcuts</li>
           </ul>
         </div>
@@ -353,7 +388,7 @@
           <ul class="plain">
             <li><strong>Email:</strong> sales@grownith.com</li>
             <li><strong>Phone:</strong> +44 7424986368</li>
-            <li><strong>Location:</strong> Canada/ UK/ UAE/ Oman/ India</li>
+            <li><strong>Location:</strong> Canada / UK / UAE / Oman / India</li>
           </ul>
           <p class="muted"></p>
         </div>
@@ -384,8 +419,8 @@
     <div class="container footer-row">
       <div>
         <div class="footer-brand">
-  <img src="assets/logo.png" alt="Grownith logo" class="logo footer-logo" />
-</div>
+          <img src="assets/logo.png" alt="Grownith logo" class="logo footer-logo" />
+        </div>
         <p class="muted tiny">© <span id="year"></span> Grownith. All rights reserved.</p>
       </div>
       <div class="footer-links">
@@ -397,8 +432,62 @@
     </div>
   </footer>
 
+  <style>
+    .hero-vid {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      z-index: 0;
+    }
+    .hero-vid.active { opacity: 1; }
+    .hero-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      cursor: pointer;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    .hero-dot.active { background: #5b9bd5; }
+  </style>
+
   <script src="script.js"></script>
+
+  <script>
+    (function () {
+      var vids = document.querySelectorAll('.hero-vid');
+      var dots = document.querySelectorAll('.hero-dot');
+      var bar  = document.getElementById('heroBar');
+      var cur  = 0;
+      var elapsed  = 0;
+      var duration = 6000;
+      var tick     = 50;
+
+      function heroGo(idx) {
+        vids[cur].classList.remove('active');
+        dots[cur].classList.remove('active');
+        cur = idx;
+        vids[cur].classList.add('active');
+        dots[cur].classList.add('active');
+        elapsed = 0;
+        bar.style.width = '0%';
+      }
+      window.heroGo = heroGo;
+
+      setInterval(function () {
+        elapsed += tick;
+        bar.style.width = Math.min((elapsed / duration) * 100, 100) + '%';
+        if (elapsed >= duration) {
+          heroGo((cur + 1) % vids.length);
+        }
+      }, tick);
+    })();
+  </script>
+
 </body>
 </html>
-
-
