@@ -384,28 +384,23 @@
           <p class="muted"></p>
         </div>
 
-        <!-- ===== CONTACT FORM (emails sales@grownith.com, subject "Website Lead") ===== -->
-        <form class="panel form" action="https://formsubmit.co/sales@grownith.com" method="POST">
+        <!-- ===== CONTACT FORM (AJAX -> sales@grownith.com, subject "Website Lead") ===== -->
+        <form class="panel form" id="leadForm">
           <h3>Send a message</h3>
-
-          <!-- email settings -->
-          <input type="hidden" name="_subject" value="Website Lead" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
-
           <label>
             Name
-            <input required type="text" name="Name" placeholder="Your name" />
+            <input required type="text" id="lf-name" placeholder="Your name" />
           </label>
           <label>
             Email
-            <input required type="email" name="Email" placeholder="you@example.com" />
+            <input required type="email" id="lf-email" placeholder="you@example.com" />
           </label>
           <label>
             Message
-            <textarea required rows="5" name="Message" placeholder="Tell us what you need..."></textarea>
+            <textarea required rows="5" id="lf-message" placeholder="Tell us what you need..."></textarea>
           </label>
           <button class="btn primary" type="submit">Send</button>
+          <p class="tiny muted" id="lf-status"></p>
         </form>
         <!-- ===== END CONTACT FORM ===== -->
 
@@ -513,6 +508,40 @@
         }
       }, tick);
     })();
+  </script>
+
+  <!-- ===== CONTACT FORM HANDLER ===== -->
+  <script>
+    document.getElementById('leadForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var status = document.getElementById('lf-status');
+      status.textContent = 'Sending...';
+
+      var payload = {
+        Name: document.getElementById('lf-name').value,
+        Email: document.getElementById('lf-email').value,
+        Message: document.getElementById('lf-message').value,
+        _subject: 'Website Lead',
+        _template: 'table'
+      };
+
+      try {
+        var res = await fetch('https://formsubmit.co/ajax/sales@grownith.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        var json = await res.json();
+        if (json.success === 'true' || json.success === true) {
+          status.textContent = 'Thanks! Your message has been sent.';
+          e.target.reset();
+        } else {
+          status.textContent = json.message || 'Please check sales@grownith.com to confirm activation, then try again.';
+        }
+      } catch (err) {
+        status.textContent = 'Could not send. Please email sales@grownith.com directly.';
+      }
+    });
   </script>
 
 </body>
