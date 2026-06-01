@@ -384,7 +384,7 @@
           <p class="muted"></p>
         </div>
 
-        <!-- ===== CONTACT FORM (AJAX -> sales@grownith.com, subject "Website Lead") ===== -->
+        <!-- ===== CONTACT FORM (Web3Forms -> sales@grownith.com, subject "Website Lead") ===== -->
         <form class="panel form" id="leadForm">
           <h3>Send a message</h3>
           <label>
@@ -510,7 +510,7 @@
     })();
   </script>
 
-  <!-- ===== CONTACT FORM HANDLER ===== -->
+  <!-- ===== CONTACT FORM HANDLER (Web3Forms) ===== -->
   <script>
     document.getElementById('leadForm').addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -518,25 +518,26 @@
       status.textContent = 'Sending...';
 
       var payload = {
+        access_key: '2f1d0aea-3430-475e-901f-e7b66314a0e3',
+        subject: 'Website Lead',
+        from_name: 'Grownith Website',
         Name: document.getElementById('lf-name').value,
         Email: document.getElementById('lf-email').value,
-        Message: document.getElementById('lf-message').value,
-        _subject: 'Website Lead',
-        _template: 'table'
+        Message: document.getElementById('lf-message').value
       };
 
       try {
-        var res = await fetch('https://formsubmit.co/ajax/sales@grownith.com', {
+        var res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(payload)
         });
         var json = await res.json();
-        if (json.success === 'true' || json.success === true) {
+        if (json.success) {
           status.textContent = 'Thanks! Your message has been sent.';
           e.target.reset();
         } else {
-          status.textContent = json.message || 'Please check sales@grownith.com to confirm activation, then try again.';
+          status.textContent = json.message || 'Could not send. Please email sales@grownith.com.';
         }
       } catch (err) {
         status.textContent = 'Could not send. Please email sales@grownith.com directly.';
