@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Grownith | Microsoft Dynamics 365, Power Platform & Azure Data + AI</title>
   <meta name="description" content="Grownith is a Microsoft business applications consultancy. We deliver Dynamics 365, Power Platform, and Azure Data & AI implementations with clear scope, clean documentation, and dependable handover." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Grownith | Microsoft Dynamics 365, Power Platform & Azure Data + AI" />
+  <meta property="og:description" content="We deliver Dynamics 365, Power Platform, and Azure Data & AI implementations with clear scope, clean documentation, and dependable handover." />
+  <meta property="og:image" content="https://grownith.com/assets/og-image.png" />
+  <meta property="og:url" content="https://grownith.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+
+  <!-- Fonts (preconnect for performance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -68,44 +86,44 @@
   </header>
 
   <!-- ===== HERO WITH VIDEO BACKGROUND ===== -->
-  <main id="home" class="hero" style="position:relative; overflow:hidden; min-height:580px; display:flex; align-items:center;">
+  <main id="home" class="hero hero--video">
 
-    <!-- Video 1 -->
+    <!-- Video 1 (active — autoplay immediately) -->
     <video id="vid0" class="hero-vid active"
       src="assets/video1.mp4"
       autoplay muted loop playsinline></video>
 
-    <!-- Video 2 -->
+    <!-- Video 2 (lazy — preload none) -->
     <video id="vid1" class="hero-vid"
       src="assets/video2.mp4"
-      autoplay muted loop playsinline></video>
+      muted loop playsinline preload="none"></video>
 
-    <!-- Video 3 -->
+    <!-- Video 3 (lazy — preload none) -->
     <video id="vid2" class="hero-vid"
       src="assets/video3.mp4"
-      autoplay muted loop playsinline></video>
+      muted loop playsinline preload="none"></video>
 
     <!-- Dark overlay -->
-    <div style="position:absolute;inset:0;background:rgba(8,18,45,0.60);z-index:1;"></div>
+    <div class="hero-overlay"></div>
 
-    <!-- Dot navigation -->
-    <div style="position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:10px;">
-      <span class="hero-dot active" onclick="heroGo(0)"></span>
-      <span class="hero-dot" onclick="heroGo(1)"></span>
-      <span class="hero-dot" onclick="heroGo(2)"></span>
+    <!-- Dot navigation (accessible buttons) -->
+    <div class="hero-dots">
+      <button class="hero-dot active" aria-label="Slide 1" onclick="heroGo(0)"></button>
+      <button class="hero-dot" aria-label="Slide 2" onclick="heroGo(1)"></button>
+      <button class="hero-dot" aria-label="Slide 3" onclick="heroGo(2)"></button>
     </div>
 
     <!-- Progress bar -->
-    <div id="heroBar" style="position:absolute;bottom:0;left:0;height:3px;width:0%;background:#5b9bd5;z-index:3;border-radius:0 2px 2px 0;"></div>
+    <div id="heroBar" class="hero-progress"></div>
 
     <!-- Hero content -->
-    <div class="container hero-grid" style="position:relative;z-index:2;">
+    <div class="container hero-grid hero-grid--overlay">
       <div>
-        <p class="pill" style="color:#a8d4f5;border-color:rgba(168,212,245,0.35);background:rgba(91,155,213,0.15);">
+        <p class="pill pill--hero">
           Microsoft Dynamics 365 • Power Platform • Azure Data & AI
         </p>
-        <h1 style="color:#fff;">Grow faster with <span class="accent">Grownith</span>.</h1>
-        <p class="lead" style="color:rgba(255,255,255,0.82);">
+        <h1 class="hero-title">Grow faster with <span class="accent">Grownith</span>.</h1>
+        <p class="lead lead--hero">
           We turn Microsoft Dynamics 365, Power Platform, and Azure into systems your teams actually
           use—modernizing finance, supply chain, and reporting with delivery that goes live on scope
           and stays maintainable long after go-live.
@@ -124,9 +142,9 @@
       </div>
 
       <!-- What we do card -->
-      <div class="hero-card" style="background:rgba(255,255,255,0.09);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:0.5px solid rgba(255,255,255,0.22);">
-        <h3 style="color:#fff;">What we do</h3>
-        <ul class="checklist" style="color:rgba(255,255,255,0.88);">
+      <div class="hero-card hero-card--glass">
+        <h3 class="hero-card__title">What we do</h3>
+        <ul class="checklist hero-card__list">
           <li>Dynamics 365 Finance & Supply Chain implementation</li>
           <li>Power Platform apps, automation & Power BI</li>
           <li>Azure data platform, integration & APIs</li>
@@ -134,7 +152,7 @@
           <li>Copilot enablement and custom AI agents</li>
         </ul>
         <div class="mini-cta">
-          <p style="color:rgba(255,255,255,0.80);"><strong style="color:#fff;">Have a project in mind?</strong> Share your requirements and we'll come back with a clear next step.</p>
+          <p class="hero-card__cta-text"><strong class="hero-card__cta-strong">Have a project in mind?</strong> Share your requirements and we'll come back with a clear next step.</p>
           <a class="btn small primary" href="#contact">Get in touch</a>
         </div>
       </div>
@@ -390,17 +408,19 @@
         <!-- ===== CONTACT FORM (Web3Forms -> sales@grownith.com, subject "Website Lead") ===== -->
         <form class="panel form" id="leadForm">
           <h3>Send a message</h3>
-          <label>
+          <!-- Honeypot field for bot protection (hidden from real users) -->
+          <input type="checkbox" name="botcheck" class="visually-hidden" style="display:none" tabindex="-1" autocomplete="off" />
+          <label for="lf-name">
             Name
-            <input required type="text" id="lf-name" placeholder="Your name" />
+            <input required type="text" id="lf-name" name="name" placeholder="Your name" />
           </label>
-          <label>
+          <label for="lf-email">
             Email
-            <input required type="email" id="lf-email" placeholder="you@example.com" />
+            <input required type="email" id="lf-email" name="email" placeholder="you@example.com" />
           </label>
-          <label>
+          <label for="lf-message">
             Message
-            <textarea required rows="5" id="lf-message" placeholder="Tell us what you need..."></textarea>
+            <textarea required rows="5" id="lf-message" name="message" placeholder="Tell us what you need..."></textarea>
           </label>
           <button class="btn primary" type="submit">Send</button>
           <p class="tiny muted" id="lf-status"></p>
@@ -416,7 +436,7 @@
     <div class="container footer-row">
       <div>
         <div class="footer-brand">
-          <img src="assets/logo.png" alt="Grownith logo" class="logo footer-logo" />
+          <img src="assets/logo.png" alt="Grownith logo" class="logo footer-logo" width="120" height="40" loading="lazy" />
         </div>
         <p class="muted tiny">© <span id="year"></span> Grownith. All rights reserved.</p>
       </div>
@@ -429,124 +449,7 @@
     </div>
   </footer>
 
-  <style>
-    .hero-vid {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 1.2s ease;
-      z-index: 0;
-    }
-    .hero-vid.active { opacity: 1; }
-    .hero-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.35);
-      cursor: pointer;
-      display: inline-block;
-      transition: background 0.3s;
-    }
-    .hero-dot.active { background: #5b9bd5; }
-
-    /* ===== HERO BOXES (white bg / blue font) ===== */
-    .hero-boxes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 26px;
-    }
-    .gbox {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #fff;
-      color: #2b5cad;
-      border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-      padding: 14px 24px;
-      font-size: 15px;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
-    .gbox:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.24);
-    }
-  </style>
-
   <script src="script.js"></script>
-
-  <script>
-    (function () {
-      var vids = document.querySelectorAll('.hero-vid');
-      var dots = document.querySelectorAll('.hero-dot');
-      var bar  = document.getElementById('heroBar');
-      var cur  = 0;
-      var elapsed  = 0;
-      var duration = 6000;
-      var tick     = 50;
-
-      function heroGo(idx) {
-        vids[cur].classList.remove('active');
-        dots[cur].classList.remove('active');
-        cur = idx;
-        vids[cur].classList.add('active');
-        dots[cur].classList.add('active');
-        elapsed = 0;
-        bar.style.width = '0%';
-      }
-      window.heroGo = heroGo;
-
-      setInterval(function () {
-        elapsed += tick;
-        bar.style.width = Math.min((elapsed / duration) * 100, 100) + '%';
-        if (elapsed >= duration) {
-          heroGo((cur + 1) % vids.length);
-        }
-      }, tick);
-    })();
-  </script>
-
-  <!-- ===== CONTACT FORM HANDLER (Web3Forms) ===== -->
-  <script>
-    document.getElementById('leadForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
-      var status = document.getElementById('lf-status');
-      status.textContent = 'Sending...';
-
-      var payload = {
-        access_key: '2f1d0aea-3430-475e-901f-e7b66314a0e3',
-        subject: 'Website Lead',
-        from_name: 'Grownith Website',
-        Name: document.getElementById('lf-name').value,
-        Email: document.getElementById('lf-email').value,
-        Message: document.getElementById('lf-message').value
-      };
-
-      try {
-        var res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        var json = await res.json();
-        if (json.success) {
-          status.textContent = 'Thanks! Your message has been sent.';
-          e.target.reset();
-        } else {
-          status.textContent = json.message || 'Could not send. Please email sales@grownith.com.';
-        }
-      } catch (err) {
-        status.textContent = 'Could not send. Please email sales@grownith.com directly.';
-      }
-    });
-  </script>
 
 </body>
 </html>
