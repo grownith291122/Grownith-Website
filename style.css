@@ -164,7 +164,7 @@ h1,h2,h3,.brand-text{
 /* ===== Hero ===== */
 .hero{padding:84px 0 48px;background:#ffffff;}
 .hero--video{position:relative;overflow:hidden;min-height:580px;display:flex;align-items:center;}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center;}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:center;max-width:720px;}
 .hero-grid--overlay{position:relative;z-index:2;}
 
 /* Hero overlay */
