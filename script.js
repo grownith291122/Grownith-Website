@@ -10,6 +10,14 @@ menuBtn?.addEventListener("click", () => {
   menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
 });
 
+// Close mobile nav when any link inside it is clicked
+nav?.querySelectorAll("a[href^='#']").forEach(link => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("show");
+    menuBtn.setAttribute("aria-expanded", "false");
+  });
+});
+
 // ===== Hero video carousel =====
 (function () {
   var vids = document.querySelectorAll('.hero-vid');
